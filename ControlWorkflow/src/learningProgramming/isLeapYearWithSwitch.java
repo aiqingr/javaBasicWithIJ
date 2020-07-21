@@ -15,10 +15,7 @@ public class isLeapYearWithSwitch {
         }
     }
 
-    public static void getDaysInMonth(int month, int year) {
-        boolean isLeapYear = isLeapYear(year);
-        switch() {
-
-        }
-    }
+//    public static void getDaysInMonth(int month, int year) {
+//        boolean isLeapYear = isLeapYear(year);
+//    }
 }
