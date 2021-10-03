@@ -2,21 +2,18 @@ package com.algo;
 
 import java.util.HashMap;
 
-public class Testing {
-
+public class CopyListWithRandom {
     public static class Node {
         public int value;
         public Node next;
         public Node rand;
 
-        public Node(int data) {
-            this.value = data;
+        public Node(int value) {
+            this.value = value;
         }
     }
 
     public static Node copyListWithRand1(Node head) {
-        // key 老节点
-        // value 新节点
         HashMap<Node, Node> map = new HashMap<Node, Node>();
         Node cur = head;
         while (cur != null) {
@@ -25,9 +22,8 @@ public class Testing {
         }
         cur = head;
         while (cur != null) {
-            // cur 老
-            // map.get(cur) 新
-            // 新.next ->  cur.next克隆节点找到
+            // cur old
+            // map.get(cur) new
             map.get(cur).next = map.get(cur.next);
             map.get(cur).rand = map.get(cur.rand);
             cur = cur.next;
@@ -45,7 +41,6 @@ public class Testing {
         // 1 -> 2
         // 1 -> 1' -> 2
         while (cur != null) {
-            // cur 老 next 老的下一个
             next = cur.next;
             cur.next = new Node(cur.value);
             cur.next.next = next;
@@ -53,26 +48,20 @@ public class Testing {
         }
         cur = head;
         Node curCopy = null;
-        // set copy node rand
-        // 1 -> 1' -> 2 -> 2'
         while (cur != null) {
-            // cur 老
-            // cur.next 新 copy
             next = cur.next.next;
             curCopy = cur.next;
             curCopy.rand = cur.rand != null ? cur.rand.next : null;
             cur = next;
         }
-        // head head.next
         Node res = head.next;
         cur = head;
-        // split
         while (cur != null) {
             next = cur.next.next;
             curCopy = cur.next;
             cur.next = next;
             curCopy.next = next != null ? next.next : null;
-            cur = next;
+            cur = cur.next;
         }
         return res;
     }
@@ -136,5 +125,4 @@ public class Testing {
         System.out.println("=========================");
 
     }
-
 }
